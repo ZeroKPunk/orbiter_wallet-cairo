@@ -1,4 +1,4 @@
-import hardhat from "hardhat";
+import hardhat, { starknet } from "hardhat";
 
 async function main() {
   await hardhat.run("starknet-compile", {
@@ -9,7 +9,9 @@ async function main() {
     paths: ["contracts/proxy.cairo"],
   });
 
-  
+  const accountContractFactory = await starknet.getContractFactory("account");
+  const accountContractClass = await accountContractFactory.declare();
+  console.log("accountContractClass:", accountContractClass);
 }
 
 main()
