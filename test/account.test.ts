@@ -17,6 +17,8 @@ describe("Account", function () {
       paths: ["contracts/proxy.cairo"],
     });
 
+    const privateKey = ensureEnvVar("OZ_ACCOUNT_PRIVATE_KEY");
+
     const accountContractFactory = await starknet.getContractFactory("account");
     accountContractClass = await accountContractFactory.declare();
     console.log("accountContractClass:", accountContractClass);
@@ -25,7 +27,7 @@ describe("Account", function () {
   });
 
   it("Test deploy", async function () {
-    const privateKey = ensureEnvVar("OZ_ACCOUNT_PRIVATE_KEY");
+    
     const public_key = ec.getStarkKey(ec.getKeyPair(privateKey));
 
     const resp = await proxyContractFactory.deploy({

@@ -3,10 +3,14 @@
 %lang starknet
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin, SignatureBuiltin, BitwiseBuiltin
+from starkware.cairo.common.alloc import alloc
+from starkware.starknet.common.syscalls import library_call
+from starkware.cairo.common.bool import TRUE, FALSE
 
-from openzeppelin.account.library import Account, AccountCallArray, assert_only_self
+from openzeppelin.account.library import Account, AccountCallArray
 from openzeppelin.introspection.erc165.library import ERC165
 from openzeppelin.utils.constants.library import IACCOUNT_ID
+from openzeppelin.upgrades.library import Proxy
 
 #
 # Constants
@@ -86,7 +90,7 @@ func upgrade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
     implementation : felt
 ):
     # only called via execute
-    assert_only_self()
+    Account.assert_only_self()
 
     # make sure the target is an account
     with_attr error_message("Implementation invalid"):
@@ -102,7 +106,7 @@ func upgrade{syscall_ptr : felt*, pedersen_ptr : HashBuiltin*, range_check_ptr}(
         assert [retdata] = TRUE
     end
 
-    Proxy._set_implementation_hash(implementation_hash)
+    Proxy._set_implementation_hash(implementation)
 
     return ()
 end
