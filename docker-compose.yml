@@ -1,0 +1,14 @@
+version: '3.8'
+
+networks:
+  # Specify the network for bridging
+  orbiter_wallet-network:
+    driver: bridge
+
+services:
+  devnet:
+    image: shardlabs/starknet-devnet:latest
+    ports:
+      - '5050:5050'
+    networks:
+      - orbiter_wallet-network
