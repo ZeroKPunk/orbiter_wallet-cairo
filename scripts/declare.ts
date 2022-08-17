@@ -1,5 +1,6 @@
 import hardhat, { starknet } from "hardhat";
 
+// npx hardhat run scripts/declare.ts
 async function main() {
   await hardhat.run("starknet-compile", {
     paths: ["contracts/account.cairo"],
