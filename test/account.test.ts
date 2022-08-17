@@ -34,11 +34,14 @@ describe("Account", function () {
   it("Test deploy", async function () {
     const public_key = ec.getStarkKey(ec.getKeyPair(accountPrivateKey));
 
-    proxyContract = await proxyContractFactory.deploy({
-      implementation: accountContractClass,
-      selector: getSelectorFromName("initialize"),
-      calldata: stark.compileCalldata({ public_key }),
-    });
+    proxyContract = await proxyContractFactory.deploy(
+      {
+        implementation: accountContractClass,
+        selector: getSelectorFromName("initialize"),
+        calldata: stark.compileCalldata({ public_key }),
+      },
+      { salt: public_key }
+    );
     console.log("proxyContract.address:", proxyContract.address);
   });
 
