@@ -118,3 +118,11 @@ if (code.bytecode.length > 0) {
     const account = new Account(provider, accountAddress, keyPair); // keyPair from `Step 1`
 }
 ```
+
+### More
+
+See more examples [here](test/starknetjs.test.ts)
+
+### License
+
+[MIT](./LICENSE) by [linkdrone](https://github.com/linkdrone)
