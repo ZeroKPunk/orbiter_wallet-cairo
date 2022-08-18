@@ -39,7 +39,7 @@ npx hardhat test account.test.ts
 
 - New PRs and features should be targeted to the `develop` branch.
 
-## Contracts interface
+## Contracts
 
 - [Account](./contracts/account.cairo)
-- [Proxy](./contracts/Proxy.cairo)
+- [Proxy](./contracts/proxy.cairo)
