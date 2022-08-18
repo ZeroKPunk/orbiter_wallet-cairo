@@ -41,6 +41,5 @@ npx hardhat test account.test.ts
 
 ## Contracts interface
 
-### Account
-
-### Proxy
+- [Account](./contracts/account.cairo)
+- [Proxy](./contracts/Proxy.cairo)
